@@ -320,9 +320,8 @@ function swipe(){
     }
     else{
         console.log('swipeRight')
-        this.moveCar({}, 0, 1)
         if(game.input.x < game.width/2){
-            this.moveCar({}, 1, 1)
+            this.moveCar({},0, 1)
         }
         else{
             this.moveCar({}, 1, 1)
