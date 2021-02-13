@@ -310,9 +310,22 @@ function tapUp(){
 function swipe(){
     endX= game.input.x
     if(endX < startX){
-        Console.log('swipeLeft')
+        if(game.input.x < game.width/2){
+            this.moveCar({}, 0, 0)
+        }
+        else{
+            this.moveCar({}, 1, 0)
+        }
+        console.log('swipeLeft')
     }
     else{
-        Console.log('swipeRight')
+        console.log('swipeRight')
+        this.moveCar({}, 0, 1)
+        if(game.input.x < game.width/2){
+            this.moveCar({}, 1, 1)
+        }
+        else{
+            this.moveCar({}, 1, 1)
+        }
     }
 }

@@ -8,6 +8,8 @@ function Create(){
     updateScore()
     carSmoke(2)
     //keyboardControl('left', 'right')
+    game.input.onUp.add(tapUp, this)
+    game.input.onDown.add(tapDown, this)
 }
 
 function Update(){
