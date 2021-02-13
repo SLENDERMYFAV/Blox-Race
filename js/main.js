@@ -15,6 +15,9 @@ let points
 let pointsText
 let emitter = []
 let isGameOver= false
+let mouseIsDown
+let startX
+let endX
 
 
 
@@ -292,5 +295,24 @@ function carSmoke(numOfCars){
         emitter[i].makeParticles('smoke', 1, 200)
         emitter[i].start(false, 600, 20)
         car[i].addChild(emitter[i])
+    }
+}
+
+function tapDown(){
+    mouseIsDown= true
+    startX= game.input.x
+}
+
+function tapUp(){
+    mouseIsDown= false
+}
+
+function swipe(){
+    endX= game.input.x
+    if(endX < startX){
+        Console.log('swipeLeft')
+    }
+    else{
+        Console.log('swipeRight')
     }
 }

@@ -16,7 +16,7 @@ function Update(){
     if(mouseIsDown= true){
         let distX= Math.abs(game.input.x-startX)
         if (distX > 50){
-            swi
+            swipe()
         }
     }
     collisionObstacles(0.1, 0.3)
