@@ -18,6 +18,7 @@ let isGameOver= false
 let mouseIsDown
 let startX
 let endX
+let bestScore
 
 
 
@@ -246,6 +247,7 @@ function targetCollector(numOfPoints){
 
 function scorePoints(){
     points= 0
+    bestScore= localStorage.getItem("2cars") == null? 0: localStorage.getItem("2cars")
     pointsText= game.add.bitmapText(game.width-50, game.height/15, "font", "", 45)
     pointsText.anchor.setTo(0.5, 0.8)
 }
@@ -256,27 +258,32 @@ function updateScore(){
 
 function gameOver() {
     isGameOver=  false
+    localStorage.setItem("2cars", Math.max(points, bestScore))
     gameover = game.add.sprite(game.width / 2, game.height / 2, "gameover")
     gameover.anchor.setTo(0.5, 0.5)
     gameover.alpha = 0.7
     gameover.inputEnabled = true
     gameover.events.onInputDown.add(this.restartGame, this)
 
-    gameoverText = game.add.bitmapText(game.width / 2, game.height / 3, "font", "GAME OVER", 60)
+    gameoverText = game.add.bitmapText(game.width / 2, game.height / 4, "font", "GAME OVER", 60)
     gameoverText.anchor.setTo(0.5, 0.5)
 
-    restartText = game.add.bitmapText(game.width / 2, game.height / 2, "font", "TAP TO RESTART", 40)
+    restartText = game.add.bitmapText(game.width / 2, game.height / 3, "font", "TAP TO RESTART", 40)
     restartText.anchor.setTo(0.5, 0.5)
 
-    scoreText = game.add.bitmapText(game.width / 2, game.height / 1.5, "font", "", 40)
+    scoreText = game.add.bitmapText(game.width / 2, game.height / 2, "font", "", 40)
     scoreText.anchor.setTo(0.5, 0.5)
     scoreText.text= 'Score: '+points
 
+    scoreBestText = game.add.bitmapText(game.width / 2, game.height / 1.5, "font", "", 40)
+    scoreBestText.anchor.setTo(0.5, 0.5)
+    scoreBestText.text= 'bestScore: '+localStorage.getItem("2cars")
 
     game.world.bringToTop(this.gameover)
     game.world.bringToTop(this.gameoverText)
     game.world.bringToTop(this.restartText)
     game.world.bringToTop(this.scoreText)
+    game.world.bringToTop(this.scoreBestText)
 }
 
 function restartGame() {
